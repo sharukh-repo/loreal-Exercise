@@ -1,12 +1,18 @@
-public with sharing class ProductController {
-
+public class ProductController {
+    
     @AuraEnabled(cacheable=true)
-    public static srkApp__Product__c getProduct(String barcode) {
-        return [
-            SELECT Name, srkApp__Category__c, srkApp__Expiration_Date__c
-            FROM  srkApp__Product__c
-            WHERE srkApp__Barcode__c = :barcode
+    public static Product2__c getProduct(String barcode) {
+        
+        if (String.isBlank(barcode)) {
+            return null;
+        }
+
+        List<Product2__c> products = [
+            SELECT Id, Name, Barcode__c, Expiration_Date__c, Category__c
+            FROM Product2__c
+            WHERE Barcode__c = :barcode
             LIMIT 1
         ];
+        return products.isEmpty() ? null : products[0];
     }
 }

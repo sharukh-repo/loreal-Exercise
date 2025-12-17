@@ -12,17 +12,27 @@
                 label="Search Product"
                 variant="brand"
                 class="slds-m-top_small"
-                onclick={handleSearch}>
+                onclick={handleSearch}
+                disabled={isLoading}>
             </lightning-button>
+
+            <!-- User-friendly error message -->
+            <template if:true={errorMessage}>
+                <div class="slds-m-top_medium slds-text-color_error" role="alert">
+                    {errorMessage}
+                </div>
+            </template>
 
             <template if:true={product}>
                 <p class="slds-m-top_medium">
-                    <strong>Name:</strong> {product.Name}
+                    <strong>Name:</strong>{product.Name}
                 </p>
                 <p>
-                    <strong>Category:</strong> {product.srkApp__Category__c}
+                    <strong>Category:</strong>{product.Category__c}
                 </p>
-                
+                <p>
+                    <strong>Expiration Date:</strong>{product.Expiration_Date__c}
+                </p>
             </template>
 
         </div>
