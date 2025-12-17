@@ -1,0 +1,20 @@
+## DEBUGGING & CODE REVIEW EXERCISE
+
+What are wrong with the code bellow?  
+
+Apex Trigger:
+
+```java
+trigger CaseTrigger on Case (after insert) {
+    for (Case c : Trigger.new) {
+        if (c.Type == 'Complaint') {
+            Product__c p = [SELECT Id FROM Product__c WHERE Barcode__c = :c.Product_Barcode__c LIMIT 1];
+            c.Product__c = p.Id;
+            update c;
+        }
+    }
+}
+
+Ans : 
+In the above trigger the issues are 1.Soql inside the for loop 2. DML inside the for loop 3. No bulkification and no Recursive check and NO null checks
+and using after insert to set up the lookup instead you can use before insert 
