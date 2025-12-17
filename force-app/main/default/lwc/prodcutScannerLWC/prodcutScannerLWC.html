@@ -1,0 +1,30 @@
+<template>
+    <lightning-card title="Case Product Scanner">
+        <div class="slds-p-around_medium">
+
+            <lightning-input
+                label="Enter Barcode"
+                value={barcode}
+                onchange={handleChange}>
+            </lightning-input>
+
+            <lightning-button
+                label="Search Product"
+                variant="brand"
+                class="slds-m-top_small"
+                onclick={handleSearch}>
+            </lightning-button>
+
+            <template if:true={product}>
+                <p class="slds-m-top_medium">
+                    <strong>Name:</strong> {product.Name}
+                </p>
+                <p>
+                    <strong>Category:</strong> {product.srkApp__Category__c}
+                </p>
+                
+            </template>
+
+        </div>
+    </lightning-card>
+</template>
