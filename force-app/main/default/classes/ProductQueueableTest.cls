@@ -15,5 +15,5 @@ private class ProductQueueableTest {
         Product2__c p = prods[0];
         System.assertEquals('3600523235214', p.Barcode__c, 'Barcode should match fixed mock response');
         System.assertEquals('L’Oréal Paris Revitalift Serum', p.Name, 'Name should match fixed mock response');
-        
+    }
 }
